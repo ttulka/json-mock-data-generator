@@ -1,0 +1,100 @@
+{
+	items: [
+		{
+			name: "patients",
+			repeat: "3",
+			items: [
+				{
+					name: "personalId",
+					type: "id"
+				},
+				{
+					name: "title",
+					type: "title"
+				},
+				{
+					name: "name",
+					type: "firstName"
+				},
+				{
+					name: "surname",
+					type: "lastName"
+				},
+				{
+					name: "gender",
+					type: "random",
+					values: "male, female"
+				},
+				{
+					name: "age",
+					type: "integer",
+					min: "1",
+					max: "100"
+				},
+				{
+					name: "details",
+					type: "file",
+					path: "./patient.dat"
+				},
+				{
+					name: "diagnosis",
+					repeat: "1,10",
+					items: [
+						{
+							name: "what",
+							type: "lorem",
+							max: "10"
+						},
+						{
+							name: "measuredValue",
+							type: "float",
+							max: "100"
+						}
+					]
+				},			
+				
+				{
+					name: "comments",
+					type: "lorem",
+					min: "20",
+					max: "50"
+				}
+			]
+		},
+		{
+			name: "metaInfo",
+			items: [
+				{
+					name: "name",
+					value: "Example configuration file for a patient data"
+				},
+				{
+					name: "doctor",
+					items: [
+						{
+							name: "name",
+							type: "fullName"
+						},
+						{
+							name: "email",
+							type: "email"
+						},
+						{
+							name: "contact",
+							type: "phone"
+						},
+						{
+							name: "home",
+							type: "address"
+						}
+					]
+				},
+				{
+					name: "updated",
+					type: "date",
+					min: "1990-01-01"
+				}
+			]
+		}
+	]
+}

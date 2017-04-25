@@ -1,0 +1,27 @@
+### Intellij ###
+.idea/
+.idea_modules/
+out/
+*.iws
+*.iml
+
+### Eclipse ###
+.settings/
+.project
+.classpath
+.cache-main
+
+### Java ###
+*.class
+*.log
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+### Maven ###
+target/
+
+#.gitignore

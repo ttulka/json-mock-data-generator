@@ -1,0 +1,28 @@
+{
+	items: [
+		{
+			name: "patients",
+			repeat: "3",
+			items: [
+				{
+					name: "personalId",
+					type: "id"
+				},
+				{
+					name: "name",
+					type: "fullName"
+				}
+			]
+		},
+		{
+			name: "doctors",
+			repeat: "1,2",
+			items: [
+				{
+					name: "name",
+					type: "fullName"
+				}
+			]
+		}
+	]
+}
