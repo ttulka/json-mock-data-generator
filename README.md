@@ -2,9 +2,18 @@
 
 A simple tool for generating JSON mock data based on the configurable structure.
 
+There is a lot of online tool for the similar usage like [JSON Generator](http://www.json-generator.com), but all of them have a little problem - they fail when generating a big amount of data (milions of elements). For such purposes a local processing must be used.
+
 ## Features
 
-To be done.
+The tool provides a simple configurable definition of the generated result:
+
+- user-defined structure of a document (sub-elements),
+- user-defined repeat of element,
+- pre-defined value generators like name, e-mail, phone, etc.
+- including a content of a local file,
+- random values (numbers, dates, strings) with minimums and maximuns or
+- random selection from a user-defined set.
 
 ## Configuration
 
@@ -12,7 +21,7 @@ To be done.
 
 ## Running
 
-First, clone/fork the repo:
+First, clone or fork the repo:
 
 ```
 $ git clone git@github.com:ttulka/json-mock-data-generator.git
