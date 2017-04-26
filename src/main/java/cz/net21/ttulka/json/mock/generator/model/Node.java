@@ -159,9 +159,9 @@ public class Node {
 		
 		NodeBuilder repeat(String repeat) {
 			String[] split = repeat.split(",");			
-			node.repeatMin = Integer.parseInt(split[0].trim());
+			node.repeatMin = parseInt(split[0].trim());
 			if (split.length > 1) {
-				node.repeatMax = Integer.parseInt(split[1].trim());
+				node.repeatMax = parseInt(split[1].trim());
 			} else {
 				node.repeatMax = node.repeatMin;
 			}
@@ -178,7 +178,7 @@ public class Node {
 			if (date.isPresent()) {
 				node.minDate = date.get();
 			} else {
-				node.min = Integer.parseInt(min);
+				node.min = parseInt(min);
 			}
 			return this;
 		}
@@ -188,7 +188,7 @@ public class Node {
 			if (date.isPresent()) {
 				node.maxDate = date.get();
 			} else {
-				node.max = Integer.parseInt(max);
+				node.max = parseInt(max);
 			}
 			return this;
 		}
@@ -196,6 +196,16 @@ public class Node {
 		NodeBuilder children(List<Node> children) {
 			node.children = children;
 			return this;
+		}
+		
+		private int parseInt(String str) {
+			try {
+				int val = Integer.parseInt(str);
+				return val >= 0 ? val : 0;
+			} 
+			catch (Exception e) {
+				return 0;
+			}
 		}
 		
 		private Optional<Date> getAsDate(String str) {

@@ -60,7 +60,7 @@ public class Configuration {
 			builder.max((String)map.get("max"));
 		}
 		if (map.containsKey("path")) {
-			builder.path(path.getParent().resolve((String)map.get("path")));
+			builder.path(path.toAbsolutePath().getParent().resolve((String)map.get("path")));
 		}
 		if (map.containsKey("items")) {
 			builder.children(((List<Map<String,?>>)map.get("items")).stream()
