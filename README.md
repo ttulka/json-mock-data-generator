@@ -47,7 +47,7 @@ Configuration is a [JSON](http://www.json.org) file with the following formal de
 	
 A very simple configuration file could look like this:
 
-```json
+```
 {
 	items: [
 		{
