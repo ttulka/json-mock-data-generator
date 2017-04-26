@@ -22,7 +22,6 @@
 				},
 				{
 					name: "gender",
-					type: "random",
 					values: "male, female"
 				},
 				{
