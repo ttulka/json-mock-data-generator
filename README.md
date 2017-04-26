@@ -1,4 +1,4 @@
-# Json Mock Data Generator
+# JSON Mock Data Generator
 
 A simple tool for generating JSON mock data based on the configurable structure.
 
