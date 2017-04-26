@@ -84,20 +84,20 @@ A very simple configuration file could look like this:
 					name: "home",
 					type: "address"
 				},
-                {
-                    name: "doctors",
-                    repeat: "1,5",
-                    items: [
-                        {
-                            name: "title",
-                            type: "title"
-                        },
-                        {
-                            name: "name",
-                            type: "fullName"
-                        }
-                    ]
-                }
+				{
+					name: "doctors",
+					repeat: "1,5",
+					items: [
+						{
+							name: "title",
+							type: "title"
+						},
+						{
+							name: "name",
+							type: "fullName"
+						}
+					]
+				}
 			]
 		},
 		{
