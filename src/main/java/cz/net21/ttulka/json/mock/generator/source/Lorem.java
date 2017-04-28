@@ -23,7 +23,7 @@ public class Lorem implements Source<String> {
 	
 	public Lorem(Random random, int max) {
 		super();
-		this.max = max;
+		this.max = max <= 0 ? Integer.MAX_VALUE : max;
 		this.random = random;
 	}
 	
