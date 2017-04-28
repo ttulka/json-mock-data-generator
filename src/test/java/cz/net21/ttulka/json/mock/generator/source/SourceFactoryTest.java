@@ -40,116 +40,156 @@ public class SourceFactoryTest {
 	}
 
 	@Test
-	public void getSourceTest() {
+	public void getSourceCompositeTest() {
 		when(node.getType()).thenReturn(NodeTypes.COMPOSITE);
-		Source<?> source1 = factory.getSource(node);
-		
-		assertNull(source1);
-		
+		Source<?> source = factory.getSource(node);
+
+		assertNull(source);
+	}
+
+	@Test
+	public void getSourceValueTest() {
 		when(node.getType()).thenReturn(NodeTypes.VALUE);
 		when(node.getValue()).thenReturn("123");
-		Source<?> source2 = factory.getSource(node);
-		
-		assertNotNull(source2);
-		assertEquals("123", source2.getNext());
-		
+		Source<?> source = factory.getSource(node);
+
+		assertNotNull(source);
+		assertEquals("123", source.getNext());
+	}
+
+	@Test
+	public void getSourceIntegerOneTest() {
 		when(node.getType()).thenReturn(NodeTypes.INTEGER);
+		when(node.getValue()).thenReturn("123");
 		when(node.getMin()).thenReturn(123);
 		when(node.getMax()).thenReturn(123);
-		Source<?> source3 = factory.getSource(node);
-		
-		assertNotNull(source3);
-		
+		Source<?> source = factory.getSource(node);
+
+		assertNotNull(source);
+
 		testManyTimes(100, () -> {
-			assertEquals(123, source3.getNext());
-		});		
-		
-		when(node.getMax()).thenReturn(125);
-		Source<?> source4 = factory.getSource(node);
-		
-		assertNotNull(source4);
-		
-		testManyTimes(100, () -> {
-			assertTrue((Integer)source4.getNext() >= 123);
-			assertTrue((Integer)source4.getNext() <= 125);
+			assertEquals(123, source.getNext());
 		});
-		
+	}
+
+	@Test
+	public void getSourceIntegerMinMaxTest() {
+		when(node.getType()).thenReturn(NodeTypes.INTEGER);
+		when(node.getMin()).thenReturn(123);
+		when(node.getMax()).thenReturn(125);
+		Source<?> source = factory.getSource(node);
+
+		assertNotNull(source);
+
+		testManyTimes(100, () -> {
+			assertTrue((Integer) source.getNext() >= 123);
+			assertTrue((Integer) source.getNext() <= 125);
+		});
+	}
+
+	@Test
+	public void getSourceTest() {
 		when(node.getType()).thenReturn(NodeTypes.FLOAT);
+		when(node.getValue()).thenReturn("123");
 		when(node.getMin()).thenReturn(123);
 		when(node.getMax()).thenReturn(124);
-		Source<?> source5 = factory.getSource(node);
-		
-		assertNotNull(source5);
+		Source<?> source = factory.getSource(node);
+
+		assertNotNull(source);
 
 		testManyTimes(1000, () -> {
-			assertTrue((Float)source5.getNext() >= 123f);
-			assertTrue((Float)source5.getNext() <= 125f);
+			assertTrue((Float) source.getNext() >= 123f);
+			assertTrue((Float) source.getNext() <= 125f);
 		});
-		
-		Date today = new Date();		
-		
+	}
+
+	@Test
+	public void getSourceDateTest() {
+		Date today = new Date();
+
 		when(node.getType()).thenReturn(NodeTypes.DATE);
 		when(node.getMinDate()).thenReturn(today);
-		Source<?> source6 = factory.getSource(node);
-		
-		assertNotNull(source6);
-		
+		Source<?> source = factory.getSource(node);
+
+		assertNotNull(source);
+
 		testManyTimes(100, () -> {
 			try {
-				Date next = factory.dateFormat.parse(source6.getNext().toString());
+				Date next = factory.dateFormat.parse(source.getNext().toString());
 				assertTrue(next.compareTo(today) != -1);
 			} catch (Exception e) {
 				throw new RuntimeException(e);
-			}			
+			}
 		});
-		
+	}
+
+	@Test
+	public void getSourceIdTest() {
 		when(node.getType()).thenReturn(NodeTypes.ID);
-		Source<?> source7 = factory.getSource(node);
-		
-		assertNotNull(source7);
-		assertFalse(source7.getNext().toString().isEmpty());
-		
+		Source<?> source = factory.getSource(node);
+
+		assertNotNull(source);
+		assertFalse(source.getNext().toString().isEmpty());
+	}
+
+	@Test
+	public void getSourceLoremIpsumTest() {
 		when(node.getType()).thenReturn(NodeTypes.LOREM);
-		Source<?> source8 = factory.getSource(node);
-		
-		assertNotNull(source8);
-		assertFalse(source8.getNext().toString().isEmpty());
-		
+		Source<?> source = factory.getSource(node);
+
+		assertNotNull(source);
+		assertFalse(source.getNext().toString().isEmpty());
+	}
+
+	@Test
+	public void getSourceRandomTest() {
 		when(node.getType()).thenReturn(NodeTypes.RANDOM);
 		when(node.getValues()).thenReturn(Arrays.asList("a", "b", "c"));
-		Source<?> source9 = factory.getSource(node);
-		
-		assertNotNull(source9);
-		assertFalse(source9.getNext().toString().isEmpty());
-		assertThat(source9.getNext(), anyOf(is("a"), is("b"), is("c")));
-		
+		Source<?> source = factory.getSource(node);
+
+		assertNotNull(source);
+		assertFalse(source.getNext().toString().isEmpty());
+		assertThat(source.getNext(), anyOf(is("a"), is("b"), is("c")));
+	}
+
+	@Test
+	public void getSourceFullNameTest() {
 		when(node.getType()).thenReturn(NodeTypes.FULL_NAME);
-		Source<?> source10 = factory.getSource(node);
-		
-		assertNotNull(source10);
-		assertFalse(source10.getNext().toString().isEmpty());
-		assertTrue(source10.getNext().toString().contains(" "));
-		
+		Source<?> source = factory.getSource(node);
+
+		assertNotNull(source);
+		assertFalse(source.getNext().toString().isEmpty());
+		assertTrue(source.getNext().toString().contains(" "));
+	}
+
+	@Test
+	public void getSourceFirstNameTest() {
 		when(node.getType()).thenReturn(NodeTypes.FIRST_NAME);
-		Source<?> source11 = factory.getSource(node);
-		
-		assertNotNull(source11);
-		assertFalse(source11.getNext().toString().isEmpty());
-		
+		Source<?> source = factory.getSource(node);
+
+		assertNotNull(source);
+		assertFalse(source.getNext().toString().isEmpty());
+	}
+
+	@Test
+	public void getSourceEmailTest() {
 		when(node.getType()).thenReturn(NodeTypes.EMAIL);
-		Source<?> source12 = factory.getSource(node);
-		
-		assertNotNull(source12);
-		assertFalse(source12.getNext().toString().isEmpty());
-		assertTrue(source12.getNext().toString().contains("@"));
-		
+		Source<?> source = factory.getSource(node);
+
+		assertNotNull(source);
+		assertFalse(source.getNext().toString().isEmpty());
+		assertTrue(source.getNext().toString().contains("@"));
+	}
+
+	@Test
+	public void getSourceFileTest() {
 		when(node.getType()).thenReturn(NodeTypes.FILE);
 		when(node.getPath()).thenReturn(Paths.get("examples/patient.dat"));
-		Source<?> source13 = factory.getSource(node);
+		Source<?> source = factory.getSource(node);
 		
-		assertNotNull(source13);
-		assertFalse(source13.getNext().toString().isEmpty());
-		assertEquals("Some details about a patient.", source13.getNext());
+		assertNotNull(source);
+		assertFalse(source.getNext().toString().isEmpty());
+		assertEquals("Some details about a patient.", source.getNext());
 	}
 		
 	private void testManyTimes(int repeats, Runnable test) {
