@@ -1,7 +1,5 @@
 package cz.net21.ttulka.json.mock.generator;
 
-import java.io.Console;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,11 +14,21 @@ public class App {
 	static final String OUTPUT_DEFAULT = "output.json";
 	
 	public static void main(String[] argv) {
-		final Console console = System.console();
-		
+		Path confPath = readConfigPath();
+		Path outputPath = readOutputPath(OUTPUT_DEFAULT);
+
+		try {
+			new Generator(confPath, outputPath).run();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private static Path readConfigPath() {
 		String conf = null;
 		while (conf == null || conf.isEmpty()) {
-			conf = console.readLine("Configuration file: ");
+			conf = System.console().readLine("Configuration file: ");
 
 			Path path = Paths.get(conf);
 			if (Files.notExists(path) || !Files.isRegularFile(path) || !Files.isReadable(path)) {
@@ -28,24 +36,23 @@ public class App {
 				conf = null;
 			}
 		}
-		Path confPath = Paths.get(conf);
-		
-		String output = console.readLine("Output JSON file (%s): ", OUTPUT_DEFAULT);
-		if (output == null || output.isEmpty()) {
-			output = OUTPUT_DEFAULT;
-		}
+		return Paths.get(conf);
+	}
 
-		Path outputPath = Paths.get(output);
-		if (Files.exists(outputPath) && !Files.isWritable(outputPath)) {
-			System.err.println("Output file '" + output + "' is incorrect.");
-			outputPath = Paths.get(OUTPUT_DEFAULT);
-		}
+	private static Path readOutputPath(String defaultOutputPath) {
+		Path path = null;
+		while (path == null) {
+			String output = System.console().readLine("Output JSON file (%s): ", defaultOutputPath);
+			if (output == null || output.isEmpty()) {
+				output = defaultOutputPath;
+			}
 
-		try {
-			new Generator(confPath, outputPath).run();
+			path = Paths.get(output);
+			if (Files.exists(path) && (!Files.isRegularFile(path) || !Files.isWritable(path))) {
+				System.err.println("Output file '" + output + "' is not a writable file.");
+				path = null;
+			}
 		}
-		catch (IOException e) {
-			e.printStackTrace();
-		}
+		return path;
 	}
 }
