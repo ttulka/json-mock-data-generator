@@ -75,11 +75,10 @@ public class ConfigurationTest {
 
 	@Test
 	public void getNodeTypeTest() {
-		NodeTypes type;
 		Map<String,Object> map = new HashMap<>();
-
 		map.put("type", "firstName");
-		type = conf.getNodeType(map);
+
+		NodeTypes type = conf.getNodeType(map);
 
 		assertNotNull(type);
 		assertEquals(NodeTypes.FIRST_NAME, type);
@@ -87,11 +86,10 @@ public class ConfigurationTest {
 	
 	@Test
 	public void getNodeTypeRandomTest() {
-		NodeTypes type;
 		Map<String,Object> map = new HashMap<>();
-		
-		map.put("values", "1,2,3");		
-		type = conf.getNodeType(map);
+		map.put("values", "1,2,3");
+
+		NodeTypes type = conf.getNodeType(map);
 		
 		assertNotNull(type);
 		assertEquals(NodeTypes.RANDOM, type);
@@ -99,11 +97,10 @@ public class ConfigurationTest {
 
 	@Test
 	public void getNodeTypeValueTest() {
-		NodeTypes type;
 		Map<String,Object> map = new HashMap<>();
-
 		map.put("value", "my example");
-		type = conf.getNodeType(map);
+
+		NodeTypes type = conf.getNodeType(map);
 
 		assertNotNull(type);
 		assertEquals(NodeTypes.VALUE, type);
@@ -111,11 +108,10 @@ public class ConfigurationTest {
 
 	@Test
 	public void getNodeTypeCompositeTest() {
-		NodeTypes type;
 		Map<String,Object> map = new HashMap<>();
-
 		map.put("items", new ArrayList<>());
-		type = conf.getNodeType(map);
+
+		NodeTypes type = conf.getNodeType(map);
 
 		assertNotNull(type);
 		assertEquals(NodeTypes.COMPOSITE, type);
