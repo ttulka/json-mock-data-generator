@@ -1,9 +1,6 @@
 package cz.net21.ttulka.json.mock.generator.source;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -18,12 +15,12 @@ public class Lorem implements Source<String> {
 	
 	private static final String LOREM_IPSUM = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
 
-	private final int max;
+	private final int maxWords;
 	private final Random random;
 	
-	public Lorem(Random random, int max) {
+	public Lorem(Random random, int maxWords) {
 		super();
-		this.max = max <= 0 ? Integer.MAX_VALUE : max;
+		this.maxWords = maxWords <= 0 ? Integer.MAX_VALUE : maxWords;
 		this.random = random;
 	}
 	
@@ -31,41 +28,60 @@ public class Lorem implements Source<String> {
 		this(random, 100);
 	}
 	
-	String generateLorem(int max) {
+	String generateLorem(int maxWords) {
 		List<String> list = Arrays.stream(LOREM_IPSUM.split("[,\\.\\s]"))
 				.filter(s -> s.length() > 1)
 				.map(String::trim)
 				.map(String::toLowerCase)
 				.collect(Collectors.toList());
+
+		shuffleWords(list);
+
+		list = cutWords(list, maxWords);
+
+		capitalizeFirstWordAndAddPeriod(list);
+
+		addSomeCommas(list);
+		addSomePeriods(list);
 		
+		return String.join(" ", list);
+	}
+
+	private void shuffleWords(List<String> list) {
 		Collections.shuffle(list);
-		
-		if (max < list.size()) {
-			list = list.subList(0, max);
-		}
-		
-		list.set(0, StringUtils.capitalize(list.get(0)));
-		list.set(list.size() - 1, list.get(list.size() - 1) + ".");
-		
-		// add commas
+	}
+
+	private void addSomeCommas(List<String> list) {
 		int index = 5;
 		while (index < list.size() - 15) {
 			index += random.nextInt(10) + 5;
 			list.set(index, list.get(index) + ",");
 		}
-		// add periods
-		index = 10;
+	}
+
+	private void addSomePeriods(List<String> list) {
+		int index = 10;
 		while (index < list.size() - 25) {
 			index += random.nextInt(15) + 10;
 			list.set(index, StringUtils.capitalize(list.get(index)));
 			list.set(index - 1, list.get(index - 1) + ".");
 		}
-		
-		return String.join(" ", list);
+	}
+
+	private void capitalizeFirstWordAndAddPeriod(List<String> list) {
+		list.set(0, StringUtils.capitalize(list.get(0)));
+		list.set(list.size() - 1, list.get(list.size() - 1) + ".");
+	}
+
+	private List<String> cutWords(List<String> list, int maxWords) {
+		if (maxWords < list.size()) {
+			return list.subList(0, maxWords);
+		}
+		return list;
 	}
 	
 	@Override
 	public String getNext() {
-		return generateLorem(max);
+		return generateLorem(maxWords);
 	}
 }
