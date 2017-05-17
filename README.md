@@ -25,10 +25,11 @@ Configuration is a [JSON](http://www.json.org) file with the following formal de
 - The root element `items` is an array,
 - each non-root element must define an attribute `name`,
 - any element can define children elements as an array element `items`,
-- an element with children elements is called a *composite element* ,
+- if no `repeat` attribute is defined there is only one *composite* child element,
 - a composite element can define an attribute `repeat` - "min[,max]" (default 1),
-- a composite element can define no other attributes,
+- if a composite element define an attribute `repeat` children elements are in an array,
 - an element can define a `value` or `values` (comma-separated values) attribute,
+- an array element has the type `array` and must define `values`,
 - if an element doesn't define a value(s), must define a `type` attribute,
 - types of elements are following:
 	- `integer`, a random int number, can be limited with `min` and `max` attributes,
@@ -85,8 +86,7 @@ A very simple configuration file could look like this:
 					type: "address"
 				},
 				{
-					name: "doctors",
-					repeat: "1,5",
+					name: "doctor",
 					items: [
 						{
 							name: "title",
@@ -95,7 +95,13 @@ A very simple configuration file could look like this:
 						{
 							name: "name",
 							type: "fullName"
-						}
+						},
+                        {
+                            name: "departments",
+                            type: "array",
+                            repeat: "1,3",
+                            values: "ICU, EU, ED, CCU, HF"
+                        }
 					]
 				}
 			]
@@ -143,6 +149,17 @@ or
 ```
 > Configuration file: examples/full.json
 ```  
+
+## Guess Configuration from a JSON document
+
+To save the effort with defining a configuration files for complex structures there is a possibility to let the program guess the configuration from an example JSON document.
+The generated configuration file could be then manually adapt especially in the meaning of the element types.
+
+``
+$ java -jar target/json-mock-data-generator-<version>.jar -guess <path-to-json-file>
+``
+
+The configuration guess will be generated into `<path-to-json-file>.guess-conf` file.
 
 ## License
 
