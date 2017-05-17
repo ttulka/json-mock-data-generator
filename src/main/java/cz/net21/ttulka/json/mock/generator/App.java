@@ -26,7 +26,7 @@ public class App {
 
 	private static void guess(Path jsonToGuessFrom) {
 		try {
-			new Guesser(jsonToGuessFrom).run();
+			new Guesser(jsonToGuessFrom, Paths.get(jsonToGuessFrom.toString() + ".guess-conf")).run();
 		}
 		catch (Exception e) {
 			e.printStackTrace();

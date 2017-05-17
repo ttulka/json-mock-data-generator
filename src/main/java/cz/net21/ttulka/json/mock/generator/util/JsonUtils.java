@@ -15,5 +15,4 @@ public class JsonUtils {
 		Files.lines(path).forEach(sb::append);
 		return new JSONObject(sb.toString());
 	}
-
 }
