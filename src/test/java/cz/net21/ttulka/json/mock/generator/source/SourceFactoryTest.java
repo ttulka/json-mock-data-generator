@@ -153,6 +153,17 @@ public class SourceFactoryTest {
 	}
 
 	@Test
+	public void getSourceArrayTest() {
+		when(node.getType()).thenReturn(NodeTypes.ARRAY);
+		when(node.getValues()).thenReturn(Arrays.asList("a", "b", "c"));
+		Source<?> source = factory.getSource(node);
+
+		assertNotNull(source);
+		assertFalse(source.getNext().toString().isEmpty());
+		assertThat(source.getNext(), anyOf(is("a"), is("b"), is("c")));
+	}
+
+	@Test
 	public void getSourceFullNameTest() {
 		when(node.getType()).thenReturn(NodeTypes.FULL_NAME);
 		Source<?> source = factory.getSource(node);

@@ -85,7 +85,13 @@
 						{
 							name: "home",
 							type: "address"
-						}
+						},
+            {
+              name: "departments",
+              type: "array",
+              repeat: "1,3",
+              values: "Intensive care unit, On-call room, Endoscopy unit, Emergency department, Coronary care unit, Hospital pharmacy"
+            }       
 					]
 				},
 				{

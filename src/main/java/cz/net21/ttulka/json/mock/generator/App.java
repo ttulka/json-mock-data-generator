@@ -10,10 +10,25 @@ import java.nio.file.Paths;
  * @author ttulka
  */
 public class App {
+
+	static final String GUESS_SWITCH = "-guess";
 	
 	static final String OUTPUT_DEFAULT = "output.json";
 	
 	public static void main(String[] argv) {
+		if (argv.length > 1 && GUESS_SWITCH.equals(argv[0]) && !argv[1].isEmpty()) {
+			guess(Paths.get(argv[1]));
+		} else {
+			generate();
+		}
+		System.exit(0);
+	}
+
+	private static void guess(Path jsonToGuessFrom) {
+		//new Guesser(jsonToGuessFrom).run();
+	}
+
+	private static void generate() {
 		Path confPath = readConfigPath();
 		Path outputPath = readOutputPath(OUTPUT_DEFAULT);
 

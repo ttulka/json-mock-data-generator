@@ -35,7 +35,7 @@ public class ConfigurationTest {
 
 	@BeforeClass
 	public static void setUpResources() throws IOException {
-		Files.write(PATH, CONF_JSON.getBytes());		
+		Files.write(PATH, CONF_JSON.getBytes());
 	}
 	
 	@AfterClass

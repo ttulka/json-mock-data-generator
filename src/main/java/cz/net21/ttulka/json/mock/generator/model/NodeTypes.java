@@ -10,6 +10,7 @@ public enum NodeTypes {
 	
 	VALUE,
 	COMPOSITE,
+	ARRAY,
 	
 	INTEGER,
 	FLOAT,

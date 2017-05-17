@@ -47,10 +47,29 @@ public class Generator {
 		
 		if (node.getType() == NodeTypes.COMPOSITE) {
 			generateCompositeNode(node, writer);
-		} else {
+		}
+		else if (node.getType() == NodeTypes.ARRAY) {
+			generateArrayNode(node, writer);
+		}
+		else {
 			Source<?> source = factory.getSource(node);
 			writer.write("\"" + source.getNext() + "\"");
 		}
+	}
+
+	private void generateArrayNode(Node node, Writer writer) throws IOException {
+		writer.write("[");
+		int repeat = new Random().nextInt(node.getRepeatMax() - node.getRepeatMin() + 1) + node.getRepeatMin();
+		Source<?> source = factory.getSource(node);
+		boolean first = true;
+		for (int i = 0; i < repeat; i ++) {
+			if (!first) {
+				writer.write(",");
+			}
+			writer.write("\"" + source.getNext() + "\"");
+			first = false;
+		}
+		writer.write("]");
 	}
 	
 	private void generateCompositeNode(Node node, Writer writer) throws IOException {

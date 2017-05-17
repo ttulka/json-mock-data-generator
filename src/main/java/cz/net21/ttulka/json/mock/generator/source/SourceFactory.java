@@ -48,7 +48,8 @@ public class SourceFactory {
 				return getCachedSource(node.getType(), (t) -> new Id());
 			case LOREM: 	
 				return getCachedSource(node.getType(), (t) -> new Lorem(random, node.getMax()));
-			case RANDOM: 	
+			case RANDOM:
+			case ARRAY:
 				return () -> node.getValues().get(random.nextInt(node.getValues().size()));
 			case FILE: 	
 				return new File(node.getPath());

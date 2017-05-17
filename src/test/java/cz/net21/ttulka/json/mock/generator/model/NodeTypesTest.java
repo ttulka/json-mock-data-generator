@@ -15,6 +15,7 @@ public class NodeTypesTest {
 	public void parseTest() {
 		assertEquals(NodeTypes.VALUE, NodeTypes.parse("value"));
 		assertEquals(NodeTypes.COMPOSITE, NodeTypes.parse("composite"));
+		assertEquals(NodeTypes.ARRAY, NodeTypes.parse("array"));
 		assertEquals(NodeTypes.INTEGER, NodeTypes.parse("integer"));
 		assertEquals(NodeTypes.FLOAT, NodeTypes.parse("float"));
 		assertEquals(NodeTypes.DATE, NodeTypes.parse("date"));
