@@ -10,6 +10,7 @@ import java.util.Map;
 
 import org.json.JSONObject;
 
+import cz.net21.ttulka.json.mock.generator.model.NodeTypes;
 import cz.net21.ttulka.json.mock.generator.util.JsonUtils;
 
 /**
@@ -99,6 +100,16 @@ public class Guesser {
     }
 
     private void generateConfigurationItem(Object value, Writer writer) throws IOException {
-        writer.write("value: \"" + value + "\"");
+        NodeTypes type = guessType(value);
+        if (type != null) {
+            writer.write("type: \"" + type.getCamelCase() + "\"");
+        } else {
+            writer.write("value: \"" + value + "\"");
+        }
+    }
+
+    private NodeTypes guessType(Object value) {
+        // TODO try to guess type from the value
+        return null;
     }
 }

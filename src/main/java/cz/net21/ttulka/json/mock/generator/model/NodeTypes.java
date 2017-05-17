@@ -1,5 +1,8 @@
 package cz.net21.ttulka.json.mock.generator.model;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.text.WordUtils;
+
 /**
  * Types of a node.
  * 
@@ -27,6 +30,10 @@ public enum NodeTypes {
 	PHONE,
 	ADDRESS,
 	FILE;
+
+	public String getCamelCase() {
+		return StringUtils.remove(WordUtils.capitalizeFully(this.toString(), '_'), "_");
+	}
 
 	public static NodeTypes parse(String str) {
 		return valueOf(str.replaceAll("(.)(\\p{Upper})", "$1_$2").toUpperCase());
