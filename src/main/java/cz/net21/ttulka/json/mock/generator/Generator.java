@@ -48,6 +48,9 @@ public class Generator {
 		if (node.getType() == NodeTypes.COMPOSITE) {
 			generateCompositeNode(node, writer);
 		}
+		else if (node.getType() == NodeTypes.LIST) {
+			generateListNode(node, writer);
+		}
 		else if (node.getType() == NodeTypes.ARRAY) {
 			generateArrayNode(node, writer);
 		}
@@ -71,8 +74,21 @@ public class Generator {
 		}
 		writer.write("]");
 	}
-	
+
 	private void generateCompositeNode(Node node, Writer writer) throws IOException {
+		writer.write("{");
+		int repeat = new Random().nextInt(node.getRepeatMax() - node.getRepeatMin() + 1) + node.getRepeatMin();
+		for (int i = 0; i < repeat; i ++) {
+            boolean first = true;
+            for (Node n : node.getChildren()) {
+                generateNode(n, writer, first);
+                first = false;
+            }
+		}
+		writer.write("}");
+	}
+	
+	private void generateListNode(Node node, Writer writer) throws IOException {
 		writer.write("[");
 		int repeat = new Random().nextInt(node.getRepeatMax() - node.getRepeatMin() + 1) + node.getRepeatMin();
 		boolean first = true;

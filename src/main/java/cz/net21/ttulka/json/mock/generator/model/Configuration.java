@@ -63,9 +63,9 @@ public class Configuration {
 			builder.path(path.toAbsolutePath().getParent().resolve((String)map.get("path")));
 		}
 		if (map.containsKey("items")) {
-			builder.children(((List<Map<String,?>>)map.get("items")).stream()
-					.map(this::mapToNode)
-					.collect(Collectors.toList()));
+			builder.children(((List<Map<String, ?>>) map.get("items")).stream()
+									 .map(this::mapToNode)
+									 .collect(Collectors.toList()));
 		}
 		
 		return builder.build();
@@ -76,7 +76,11 @@ public class Configuration {
 			return NodeTypes.parse((String) map.get("type"));
 		}
 		if (map.containsKey("items")) {
-			return NodeTypes.COMPOSITE;
+			if (map.containsKey("repeat")) {
+				return NodeTypes.LIST;
+			} else {
+				return NodeTypes.COMPOSITE;
+			}
 		}
 		if (map.containsKey("value")) {
 			return NodeTypes.VALUE;

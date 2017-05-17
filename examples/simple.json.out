@@ -1,24 +1,20 @@
 {
-  patients: [
-    {
-      personalId: "cfcd208495d565ef",
-      name: "John Smith"
-    },
-    {
-      personalId: "e4ca4238a0b92382",
-      name: "Petr Hook"
-    },
-    {
-      personalId: "d81e728d9d4c2f63",
-      name: "Jan Hammer"
-    }
-  ],
-  doctors: [
-    {
-      name: "Jimmy Page"
-    },
-    {
-      name: "Robert Plant"
-    }
-  ]
+   patients:[
+      {
+         personalId:"cfcd208495d565ef",
+         name:"Wendi Goddard"
+      },
+      {
+         personalId:"c4ca4238a0b92382",
+         name:"Sheryll Grishan"
+      },
+      {
+         personalId:"c81e728d9d4c2f63",
+         name:"Donovan Degeorge"
+      }
+   ],
+   doctor:{
+      name:"Sadye",
+      surname:"Grizzell"
+   }
 }

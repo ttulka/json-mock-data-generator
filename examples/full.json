@@ -50,8 +50,7 @@
 							max: "100"
 						}
 					]
-				},			
-				
+				},				
 				{
 					name: "comments",
 					type: "lorem",

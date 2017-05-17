@@ -25,7 +25,13 @@ public class App {
 	}
 
 	private static void guess(Path jsonToGuessFrom) {
-		//new Guesser(jsonToGuessFrom).run();
+		try {
+			new Guesser(jsonToGuessFrom).run();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
 	}
 
 	private static void generate() {
@@ -37,6 +43,7 @@ public class App {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
+			System.exit(1);
 		}
 	}
 

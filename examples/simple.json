@@ -15,12 +15,15 @@
 			]
 		},
 		{
-			name: "doctors",
-			repeat: "1,2",
+			name: "doctor",
 			items: [
 				{
 					name: "name",
-					type: "fullName"
+					type: "firstName"
+				},
+        {
+					name: "surname",
+					type: "lastName"
 				}
 			]
 		}

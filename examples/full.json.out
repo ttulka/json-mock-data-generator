@@ -1,77 +1,127 @@
 {
-  patients: [
-    {
-      personalId: "cfcd208495d565ef",
-      title: "Ing.",
-      name: "Thomas",
-      surname: "Smith",
-      gender: "male",
-      age: "42",
-      details: "Some details about a patient.",
-      diagnosis: [
-        {
-          what: "Dolor ipsum sit lorem gubergren no sanctus et est amet.",
-          measuredValue: "64"
-        },
-        {
-          what: "Invidunt sanctus lorem eirmod labore accusam amet diam justo ut.",
-          measuredValue: "67"
-        }
-      ],
-      comments: "Accusam voluptua clita kasd est ipsum dolores dolor takimata lorem."
-    },
-    {
-      personalId: "c4ca4238a0b92382",
-      title: "Prof.",
-      name: "John",
-      surname: "Brown",
-      gender: "male",
-      age: "88",
-      details: "Some details about a patient.",
-      diagnosis: [
-        {
-          what: "Lorem duo invidunt et sed at kasd amet no accusam.",
-          measuredValue: "53"
-        }
-      ],
-      comments: "At ipsum eos ipsum dolores sanctus justo diam erat clita."
-    },
-    {
-      personalId: "c81e728d9d4c2f63",
-      title: "Doc.",
-      name: "Lisa",
-      surname: "Simpson",
-      gender: "female",age: "31",
-      details: "Some details about a patient.",
-      diagnosis: [
-        {
-          what: "At tempor stet diam accusam et et sit ut sed.",
-          measuredValue: "76"
-        },
-        {
-          what: "Ipsum et ipsum invidunt dolor erat no duo kasd lorem.",
-          measuredValue: "87"
-        },
-        {
-          what: "Sit diam ipsum invidunt eos justo no lorem vero dolore.",
-          measuredValue: "67"
-        }
-      ],
-      comments: "Ut rebum diam at gubergren vero clita sit invidunt takimata."
-    }
-  ],
-  metaInfo: [
-    {
-      name: "Example configuration file for a patient data",
-      doctor: [
-        {
-          name: "John Smith",
-          email: "who@gmail.com",
-          contact: "+42 024 554 520",
-          home: "Elm Street 12, New York, 10200"
-        }
-      ],
-      updated: "1970-01-08 16:58:29"
-    }
-  ]
+   patients:[
+      {
+         personalId:"cfcd208495d565ef",
+         title:"Mr.",
+         name:"Retha",
+         surname:"Wiedemann",
+         gender:"female",
+         age:"2",
+         details:"Some details about a patient.",
+         diagnosis:[
+            {
+               what:"Dolore sit ipsum sed lorem rebum invidunt diam elitr lorem.",
+               measuredValue:"57.91146"
+            },
+            {
+               what:"Amet eirmod sed vero nonumy lorem consetetur magna est sanctus.",
+               measuredValue:"67.89613"
+            },
+            {
+               what:"Sea magna sed et at clita erat et gubergren diam.",
+               measuredValue:"96.11324"
+            },
+            {
+               what:"Sadipscing diam sed ipsum erat duo ea kasd labore lorem.",
+               measuredValue:"26.89776"
+            },
+            {
+               what:"Sanctus accusam takimata sadipscing erat nonumy gubergren sed magna est.",
+               measuredValue:"34.518078"
+            },
+            {
+               what:"Ea et ipsum labore est sit voluptua ut erat tempor.",
+               measuredValue:"23.272032"
+            },
+            {
+               what:"Invidunt takimata eirmod eos et ipsum clita erat diam sea.",
+               measuredValue:"53.51971"
+            }
+         ],
+         comments:"Vero no amet consetetur est takimata eirmod diam sea gubergren."
+      },
+      {
+         personalId:"c4ca4238a0b92382",
+         title:"Prof.",
+         name:"Randell",
+         surname:"Yotter",
+         gender:"female",
+         age:"40",
+         details:"Some details about a patient.",
+         diagnosis:[
+            {
+               what:"Dolore dolor ea consetetur amet justo sit voluptua ut duo.",
+               measuredValue:"89.13099"
+            },
+            {
+               what:"Est ipsum ut sadipscing diam et sanctus erat lorem et.",
+               measuredValue:"79.63414"
+            },
+            {
+               what:"Sadipscing diam dolor sed vero sed tempor rebum lorem sea.",
+               measuredValue:"43.0802"
+            },
+            {
+               what:"Et justo vero accusam takimata sanctus amet sit et sea.",
+               measuredValue:"56.211124"
+            },
+            {
+               what:"Ipsum et justo et sanctus duo dolores consetetur diam erat.",
+               measuredValue:"47.308983"
+            },
+            {
+               what:"Lorem diam eirmod ipsum sanctus et nonumy amet et tempor.",
+               measuredValue:"58.945354"
+            }
+         ],
+         comments:"Ipsum est labore stet amet sadipscing amet no gubergren et."
+      },
+      {
+         personalId:"c81e728d9d4c2f63",
+         title:"Ms.",
+         name:"Renna",
+         surname:"Kassler",
+         gender:"male",
+         age:"1",
+         details:"Some details about a patient.",
+         diagnosis:[
+            {
+               what:"Takimata eos dolor no sit ipsum labore rebum tempor invidunt.",
+               measuredValue:"65.22036"
+            },
+            {
+               what:"Dolor erat at eirmod vero amet et lorem magna ea.",
+               measuredValue:"50.141426"
+            },
+            {
+               what:"Stet sanctus lorem clita no vero lorem eirmod dolor dolor.",
+               measuredValue:"12.584703"
+            },
+            {
+               what:"Sanctus dolore lorem sit consetetur aliquyam et ipsum sea et.",
+               measuredValue:"50.8666"
+            },
+            {
+               what:"Et invidunt nonumy labore eirmod sit amet clita erat stet.",
+               measuredValue:"62.49084"
+            }
+         ],
+         comments:"Erat clita dolor invidunt dolores magna sed duo kasd sadipscing."
+      }
+   ],
+   metaInfo:{
+      name:"Example configuration file for a patient data",
+      doctor:{
+         name:"Lorenzo Cavaleri",
+         email:"sclynmandi@washingtonpost.com",
+         contact:"207-295-7569",
+         home:"Absecon, 609-524-3586 Atlantic",
+         departments:[
+            "Coronary care unit",
+            "Endoscopy unit",
+            "Coronary care unit"
+         ]
+      },
+      updated:"2050-08-27 16:03:21"
+   }
 }

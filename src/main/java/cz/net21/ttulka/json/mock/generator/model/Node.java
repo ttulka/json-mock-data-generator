@@ -28,7 +28,7 @@ public class Node {
 	private Date minDate;
 	private Date maxDate;
 	private Path path;
-	
+
 	private List<Node> children;
 	
 	public Node(NodeTypes type, String name) {

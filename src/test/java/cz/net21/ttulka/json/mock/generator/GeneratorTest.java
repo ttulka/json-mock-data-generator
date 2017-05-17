@@ -46,10 +46,10 @@ public class GeneratorTest {
 		assertTrue(map.get("patients") instanceof List);
 		assertEquals(3, ((List<?>)map.get("patients")).size());
 		
-		assertNotNull(map.get("doctors"));
-		assertTrue(map.get("doctors") instanceof List);
-		assertTrue(((List<?>)map.get("doctors")).size() > 0);
-		assertTrue(((List<?>)map.get("doctors")).size() < 3);
+		assertNotNull(map.get("doctor"));
+		assertTrue(map.get("doctor") instanceof Map);
+        assertNotNull(((Map<String, ?>)map.get("doctor")).get("name"));
+        assertNotNull(((Map<String, ?>)map.get("doctor")).get("surname"));
 	}
 	
 	@Test
@@ -64,7 +64,7 @@ public class GeneratorTest {
 		assertEquals(3, ((List<?>)map.get("patients")).size());
 		
 		assertNotNull(map.get("metaInfo"));
-		assertTrue(map.get("metaInfo") instanceof List);
-		assertEquals(1, ((List<?>)map.get("metaInfo")).size());
+		assertTrue(map.get("metaInfo") instanceof Map);
+        assertNotNull(((Map<String, ?>)map.get("metaInfo")).get("name"));
 	}
 }

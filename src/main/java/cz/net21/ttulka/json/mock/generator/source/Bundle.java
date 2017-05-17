@@ -38,10 +38,6 @@ public class Bundle implements Source<String> {
 		Collections.shuffle(values);
 	}
 	
-	Iterator<String> iterator() {
-		return values.iterator();
-	}
-	
 	@Override
 	public String getNext() {
 		return values.get(index ++ % values.size());

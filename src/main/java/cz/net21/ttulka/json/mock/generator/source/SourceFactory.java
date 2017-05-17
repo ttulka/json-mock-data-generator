@@ -32,7 +32,8 @@ public class SourceFactory {
 	
 	public Source<?> getSource(Node node) {
 		switch (node.getType()) {
-			case COMPOSITE:	
+			case COMPOSITE:
+			case LIST:
 				return null;
 			case VALUE:		
 				return () -> node.getValue();
