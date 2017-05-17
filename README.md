@@ -2,7 +2,7 @@
 
 A simple tool for generating JSON mock data based on the configurable structure.
 
-There is a lot of online tool for the similar usage like [JSON Generator](http://www.json-generator.com), but all of them have a little problem - they fail when generating a big amount of data (milions of elements). For such purposes a local processing must be used.
+There are a lot of online tools for similar usage like [JSON Generator](http://www.json-generator.com) but all of them have a little problem - they fail when generating a big amount of data (milions of elements). For this purpose a local processing must be used.
 
 ## Features
 
@@ -126,7 +126,7 @@ Now build it:
 ```
 $ mvn clean package
 ```
-Once this completes, a jar file will have been generated in the target folder.
+Once this is completed a jar file has been generated in the target folder.
 
 And finally run it: 
 
@@ -134,7 +134,7 @@ And finally run it:
 $ java -jar target/json-mock-data-generator-<version>.jar
 ```
 
-For the test purposes example configurations could be used:
+For test purposes example configurations could be used:
 
 ```
 > Configuration file: examples/simple.json
