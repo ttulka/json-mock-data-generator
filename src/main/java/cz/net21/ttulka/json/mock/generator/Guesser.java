@@ -5,6 +5,7 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import org.json.JSONObject;
 
 import cz.net21.ttulka.json.mock.generator.model.NodeTypes;
 import cz.net21.ttulka.json.mock.generator.util.JsonUtils;
+import cz.net21.ttulka.json.mock.generator.util.TypeFromValueGuesser;
 
 /**
  * Guesser.
@@ -69,17 +71,11 @@ public class Guesser {
     private void generateConfigurationList(List<?> list, Writer writer) throws IOException {
         writer.write("repeat: \"" + list.size() + "\",");
         writer.write("items: [");
-        boolean first = true;
-        for (Object item : list) {
-            if (!first) {
-                writer.write(",");
-            }
-            if (item instanceof Map) {
-                generateConfiguration((Map<String, ?>) item, writer);
-            } else {
-                generateConfigurationItem(item, writer);
-            }
-            first = false;
+        Object item = list.get(0);
+        if (item instanceof Map) {
+            generateConfiguration((Map<String, ?>) item, writer);
+        } else {
+            generateConfigurationItem(item, writer);
         }
         writer.write("]");
     }
@@ -89,7 +85,7 @@ public class Guesser {
         writer.write("repeat: \"" + list.size() + "\",");
         writer.write("values: \"");
         boolean first = true;
-        for (Object item : list) {
+        for (Object item : new HashSet<>(list)) {
             if (!first) {
                 writer.write(",");
             }
@@ -100,16 +96,11 @@ public class Guesser {
     }
 
     private void generateConfigurationItem(Object value, Writer writer) throws IOException {
-        NodeTypes type = guessType(value);
+        NodeTypes type = TypeFromValueGuesser.guessType(value);
         if (type != null) {
             writer.write("type: \"" + type.getCamelCase() + "\"");
         } else {
             writer.write("value: \"" + value + "\"");
         }
-    }
-
-    private NodeTypes guessType(Object value) {
-        // TODO try to guess type from the value
-        return null;
     }
 }

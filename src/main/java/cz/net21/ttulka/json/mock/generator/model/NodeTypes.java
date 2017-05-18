@@ -32,7 +32,7 @@ public enum NodeTypes {
 	FILE;
 
 	public String getCamelCase() {
-		return StringUtils.remove(WordUtils.capitalizeFully(this.toString(), '_'), "_");
+		return StringUtils.remove(WordUtils.uncapitalize(WordUtils.capitalizeFully(this.toString(), '_')), "_");
 	}
 
 	public static NodeTypes parse(String str) {

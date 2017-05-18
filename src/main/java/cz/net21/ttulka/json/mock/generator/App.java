@@ -4,6 +4,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Options;
+
 /**
  * Entry point of the application.
  * 
@@ -11,22 +16,33 @@ import java.nio.file.Paths;
  */
 public class App {
 
-	static final String GUESS_SWITCH = "-guess";
-	
 	static final String OUTPUT_DEFAULT = "output.json";
 	
-	public static void main(String[] argv) {
-		if (argv.length > 1 && GUESS_SWITCH.equals(argv[0]) && !argv[1].isEmpty()) {
-			guess(Paths.get(argv[1]));
-		} else {
-			generate();
-		}
+	public static void main(String[] args) {
+		Options cmdOptions = new Options();
+        cmdOptions.addOption("g", "guess", true, "Try to guess a configuration from a JSON file.");
+
+        try {
+            CommandLine cmdLine = new DefaultParser().parse(cmdOptions, args);
+
+            if (cmdLine.hasOption("g")) {
+                guess(Paths.get(cmdLine.getOptionValue("g")));
+            } else {
+                generate();
+            }
+
+        } catch (Exception e) {
+            new HelpFormatter().printHelp("json-mock-data-generator", cmdOptions);
+        }
 		System.exit(0);
 	}
 
 	private static void guess(Path jsonToGuessFrom) {
 		try {
-			new Guesser(jsonToGuessFrom, Paths.get(jsonToGuessFrom.toString() + ".guess-conf")).run();
+		    Path guessedConfig = Paths.get(jsonToGuessFrom.toString() + ".guess-conf");
+			new Guesser(jsonToGuessFrom, guessedConfig).run();
+
+			System.out.println("Configuration guess written into " + guessedConfig);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

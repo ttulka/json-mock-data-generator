@@ -156,7 +156,7 @@ To save the effort with defining a configuration files for complex structures th
 The generated configuration file could be then manually adapt especially in the meaning of the element types.
 
 ``
-$ java -jar target/json-mock-data-generator-<version>.jar -guess <path-to-json-file>
+$ java -jar target/json-mock-data-generator-<version>.jar --guess <path-to-json-file>
 ``
 
 The configuration guess will be generated into `<path-to-json-file>.guess-conf` file.

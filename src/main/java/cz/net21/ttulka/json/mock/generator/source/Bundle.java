@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import cz.net21.ttulka.json.mock.generator.model.NodeTypes;
@@ -41,5 +40,9 @@ public class Bundle implements Source<String> {
 	@Override
 	public String getNext() {
 		return values.get(index ++ % values.size());
+	}
+
+	public List<String> getValues() {
+		return new ArrayList<>(values);
 	}
 }
