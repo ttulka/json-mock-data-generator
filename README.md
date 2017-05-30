@@ -150,6 +150,16 @@ or
 > Configuration file: examples/full.json
 ```  
 
+### Generating a set of files
+
+To generate more than only one file based on the same configuration it is possible to define how many file creates the generator:
+
+```
+$ java -jar target/json-mock-data-generator-<version>.jar --files 100
+```
+
+Now ten files will be generated.
+
 ## Guess Configuration from a JSON document
 
 To save the effort with defining a configuration files for complex structures there is a possibility to let the program guess the configuration from an example JSON document.
