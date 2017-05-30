@@ -158,7 +158,7 @@ To generate more than only one file based on the same configuration it is possib
 $ java -jar target/json-mock-data-generator-<version>.jar --files 100
 ```
 
-Now ten files will be generated.
+Now hundred files will be generated.
 
 ## Guess Configuration from a JSON document
 
