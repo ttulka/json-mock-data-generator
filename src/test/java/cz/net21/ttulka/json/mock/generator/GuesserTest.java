@@ -29,7 +29,7 @@ public class GuesserTest {
 
     @AfterClass
     public static void cleanUp() throws IOException {
-        //Files.delete(OUTPUT);
+        Files.delete(OUTPUT);
     }
 
     @Test
