@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
-import java.util.Map;
 
 import org.json.JSONObject;
 import org.junit.AfterClass;
@@ -15,7 +13,6 @@ import cz.net21.ttulka.json.mock.generator.util.JsonUtils;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Test Generator.
@@ -39,16 +36,19 @@ public class GeneratorTest {
         new Generator(CONFIG_SIMPLE, OUTPUT).run();
 
         JSONObject json = JsonUtils.readJson(OUTPUT);
-        Map<String, ?> map = json.toMap();
 
-        assertNotNull(map.get("patients"));
-        assertTrue(map.get("patients") instanceof List);
-        assertEquals(3, ((List<?>) map.get("patients")).size());
+        assertNotNull(json.getJSONArray("patients"));
+        assertEquals(3, json.getJSONArray("patients").length());
+        assertNotNull(json.getJSONArray("patients").getJSONObject(0).get("personalId"));
+        assertNotNull(json.getJSONArray("patients").getJSONObject(0).get("name"));
+        assertNotNull(json.getJSONArray("patients").getJSONObject(1).get("personalId"));
+        assertNotNull(json.getJSONArray("patients").getJSONObject(1).get("name"));
+        assertNotNull(json.getJSONArray("patients").getJSONObject(2).get("personalId"));
+        assertNotNull(json.getJSONArray("patients").getJSONObject(2).get("name"));
 
-        assertNotNull(map.get("doctor"));
-        assertTrue(map.get("doctor") instanceof Map);
-        assertNotNull(((Map<String, ?>) map.get("doctor")).get("name"));
-        assertNotNull(((Map<String, ?>) map.get("doctor")).get("surname"));
+        assertNotNull(json.getJSONObject("doctor"));
+        assertNotNull(json.getJSONObject("doctor").get("name"));
+        assertNotNull(json.getJSONObject("doctor").get("surname"));
     }
 
     @Test
@@ -56,14 +56,35 @@ public class GeneratorTest {
         new Generator(CONFIG_FULL, OUTPUT).run();
 
         JSONObject json = JsonUtils.readJson(OUTPUT);
-        Map<String, ?> map = json.toMap();
 
-        assertNotNull(map.get("patients"));
-        assertTrue(map.get("patients") instanceof List);
-        assertEquals(3, ((List<?>) map.get("patients")).size());
+        assertNotNull(json.getJSONArray("patients"));
 
-        assertNotNull(map.get("metaInfo"));
-        assertTrue(map.get("metaInfo") instanceof Map);
-        assertNotNull(((Map<String, ?>) map.get("metaInfo")).get("name"));
+        JSONObject patient0 = json.getJSONArray("patients").getJSONObject(0);
+        assertEquals(3, json.getJSONArray("patients").length());
+        assertNotNull(patient0.get("personalId"));
+        assertNotNull(patient0.get("title"));
+        assertNotNull(patient0.get("name"));
+        assertNotNull(patient0.get("surname"));
+        assertNotNull(patient0.get("gender"));
+        assertNotNull(patient0.get("age"));
+        assertNotNull(patient0.get("details"));
+        assertNotNull(patient0.get("diagnosis"));
+        assertNotNull(patient0.getJSONArray("diagnosis").getJSONObject(0).get("what"));
+        assertNotNull(patient0.getJSONArray("diagnosis").getJSONObject(0).get("measuredValue"));
+        assertNotNull(patient0.get("comments"));
+
+        assertNotNull(json.getJSONObject("metaInfo"));
+        assertNotNull(json.getJSONObject("metaInfo").get("name"));
+        assertNotNull(json.getJSONObject("metaInfo").get("doctor"));
+
+        JSONObject doctor = json.getJSONObject("metaInfo").getJSONObject("doctor");
+        assertNotNull(doctor.get("name"));
+        assertNotNull(doctor.get("email"));
+        assertNotNull(doctor.get("contact"));
+        assertNotNull(doctor.get("home"));
+        assertNotNull(doctor.get("departments"));
+        assertNotNull(doctor.getJSONArray("departments"));
+
+        assertNotNull(json.getJSONObject("metaInfo").get("updated"));
     }
 }
