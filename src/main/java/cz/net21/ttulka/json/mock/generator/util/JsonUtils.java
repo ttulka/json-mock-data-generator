@@ -6,13 +6,16 @@ import java.nio.file.Path;
 
 import org.json.JSONObject;
 
+import cz.net21.ttulka.json.JSONObjectLinked;
+
 public class JsonUtils {
-	
-	private JsonUtils() { }
-	
-	public static JSONObject readJson(Path path) throws IOException {
-		StringBuilder sb = new StringBuilder();
-		Files.lines(path).forEach(sb::append);
-		return new JSONObject(sb.toString());
-	}
+
+    private JsonUtils() {
+    }
+
+    public static JSONObject readJson(Path path) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        Files.lines(path).forEach(sb::append);
+        return new JSONObjectLinked(sb.toString());
+    }
 }
