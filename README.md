@@ -50,73 +50,73 @@ A very simple configuration file could look like this:
 
 ```
 {
-	items: [
-		{
-			name: "header",
-			value: "Example configuration file for a medicinal data."
-		},
-		{
-			name: "patients",
-			repeat: "100",
-			items: [
-				{
-					name: "personalId",
-					type: "id"
-				},
-				{
-					name: "name",
-					type: "fullName"
-				},
-				{
-					name: "gender",
-					values: "male, female"
-				},
-				{
-					name: "age",
-					type: "integer",
-					min: "20",
-					max: "100"
-				},
-				{
-					name: "contact",
-					type: "phone"
-				},
-				{
-					name: "home",
-					type: "address"
-				},
-				{
-					name: "doctor",
-					items: [
-						{
-							name: "title",
-							type: "title"
-						},
-						{
-							name: "name",
-							type: "fullName"
-						},
-                        {
-                            name: "departments",
-                            type: "array",
-                            repeat: "1,3",
-                            values: "ICU, EU, ED, CCU, HF"
-                        }
-					]
-				}
-			]
-		},
-		{
-			name: "updated",
-			type: "date",
-			min: "1990-01-01"
-		},
-		{
-			name: "footer",
-			type: "file",
-			path: "footer.txt"
-		}
-	]
+  "items": [
+    {
+      "name": "header",
+      "value": "Example configuration file for a medicinal data."
+    },
+    {
+      "name": "patients",
+      "repeat": "100",
+      "items": [
+        {
+          "name": "personalId",
+          "type": "id"
+        },
+        {
+          "name": "name",
+          "type": "fullName"
+        },
+        {
+          "name": "gender",
+          "values": "male, female"
+        },
+        {
+          "name": "age",
+          "type": "integer",
+          "min": "20",
+          "max": "100"
+        },
+        {
+          "name": "contact",
+          "type": "phone"
+        },
+        {
+          "name": "home",
+          "type": "address"
+        },
+        {
+          "name": "doctor",
+          "items": [
+            {
+              "name": "title",
+              "type": "title"
+            },
+            {
+              "name": "name",
+              "type": "fullName"
+            },
+            {
+              "name": "departments",
+              "type": "array",
+              "repeat": "1,3",
+              "values": "ICU, EU, ED, CCU, HF"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "updated",
+      "type": "date",
+      "min": "1990-01-01"
+    },
+    {
+      "name": "footer",
+      "type": "file",
+      "path": "footer.txt"
+    }
+  ]
 }
 ```
 	
